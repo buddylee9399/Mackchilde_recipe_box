@@ -34,4 +34,5 @@ class User < ApplicationRecord
         self.add_role(:customer) if self.roles.blank?
       end
     end  
+  has_many :recipes, dependent: :destroy
 end

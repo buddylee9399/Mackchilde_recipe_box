@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  root to: 'static_pages#index'
+  # resources :directions
+  # resources :ingredients
+  resources :recipes
+  root to: 'recipes#index'
   
   get   'about', to: 'static_pages#about'
   get   'contact', to: 'static_pages#contact'

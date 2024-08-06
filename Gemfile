@@ -87,3 +87,7 @@ end
   gem "rolify"
 
   gem "pundit"
+gem "sassc-rails"
+gem "image_processing"
+gem 'haml'
+gem 'cocoon'

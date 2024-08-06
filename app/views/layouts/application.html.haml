@@ -1,0 +1,30 @@
+!!! 5
+%html
+%head
+  %title Recipe App
+  = csrf_meta_tags
+  = csp_meta_tag
+  / %script{:crossorigin => "anonymous", :integrity => "sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=", :src => "https://code.jquery.com/jquery-3.6.1.js"}
+  %script{:src => "https://code.jquery.com/jquery-3.7.1.js", :integrity =>"sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=",:crossorigin => "anonymous"}
+  = stylesheet_link_tag "application", "data-turbo-track": "reload"
+  = javascript_importmap_tags  
+
+%body
+  %nav.navbar.navbar-default
+    .container
+      .navbar-brand= link_to "Recipe Box", root_path
+
+      - if user_signed_in?
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to "New Recipe", new_recipe_path
+          %li= button_to "Sign Out", destroy_user_session_path, method: :delete
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li= link_to "Sign Up", new_user_registration_path
+          %li= link_to "Sign In", new_user_session_path
+
+  .container
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "alert"
+
+    = yield
